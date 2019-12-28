@@ -11,7 +11,7 @@ const { pool } = require('../config.js');
 //   user: "gaoutcomes_user",
 //   host: "localhost",
 //   database: "gaoutcomes",
-//   password: "2168",
+//   password: "password",
 //   port: 5432
 // })
 

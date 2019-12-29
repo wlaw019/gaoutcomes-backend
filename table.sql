@@ -12,8 +12,13 @@
 --
 -- DROP TABLE students;
 
+-- heroku pg:psql postgresql-animate-01864 --app gaoutcomes-backend
+
 
 CREATE TABLE students (id SERIAL, name VARCHAR(32), dateoffer timestamp, course_id INT);
+
+-- ALTER TABLE students ADD COLUMN interviews INT DEFAULT 0;
+-- ALTER TABLE students ADD COLUMN notes TEXT;
 
 INSERT INTO students (name, course_id) VALUES
 ('Meredith', 1),

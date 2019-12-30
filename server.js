@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(cors({origin: 'https://gaoutcomes-frontend.herokuapp.com'}));
 // app.use(cors())
 
-const whitelist = ['http://localhost:3000', 'https://gaoutcomes-frontend.herokuapp.com'];
+const whitelist = ['http://localhost:3001', 'https://gaoutcomes-frontend.herokuapp.com'];
 
 const corsOptions = {
   origin: function (origin, callback) {

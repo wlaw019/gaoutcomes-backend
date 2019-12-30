@@ -45,7 +45,11 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  const {name, dateoffer, course_id, interviews, notes} = req.body;
+  let {name, dateoffer, course_id, interviews, notes} = req.body;
+
+  if (interviews==="") {
+    interviews = 0;
+  }
 
   if (dateoffer==="") {
     pool.query("INSERT INTO students (name, course_id, interviews, notes) VALUES ($1, $2, $3, $4)", [name, course_id, interviews, notes], (err, results) => {
@@ -68,11 +72,24 @@ router.post('/', (req, res) => {
 })
 
 
+// router.put('/:id', (req, res) => {
+//   const id = parseInt(req.params.id);
+//   const {name, course_id, notes} = req.body;
+//
+//   pool.query("UPDATE students SET name = $1, course_id = $2 notes = $3 WHERE id = $4", [name, course_id, notes, id], (err, results) => {
+//     if (err) {
+//       console.log(err);
+//     }else {
+//       res.send("Student modified");
+//     }
+//   })
+// })
+
 router.put('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const {name, dateoffer, course_id, interviews, notes} = req.body;
 
-  pool.query("UPDATE students SET name = $1, dateoffer = $2, course_id = $3 interviews = $4 notes = $5 WHERE id = $6", [name, dateoffer, course_id, interviews, notes, id], (err, results) => {
+  pool.query("UPDATE students SET name = $1, dateoffer = $2, course_id = $3, interviews = $4, notes = $5 WHERE id = $6", [name, dateoffer, course_id, interviews, notes, id], (err, results) => {
     if (err) {
       console.log(err);
     }else {

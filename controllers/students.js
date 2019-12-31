@@ -72,19 +72,6 @@ router.post('/', (req, res) => {
 })
 
 
-// router.put('/:id', (req, res) => {
-//   const id = parseInt(req.params.id);
-//   const {name, course_id, notes} = req.body;
-//
-//   pool.query("UPDATE students SET name = $1, course_id = $2 notes = $3 WHERE id = $4", [name, course_id, notes, id], (err, results) => {
-//     if (err) {
-//       console.log(err);
-//     }else {
-//       res.send("Student modified");
-//     }
-//   })
-// })
-
 router.put('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const {name, dateoffer, course_id, interviews, notes} = req.body;
@@ -107,6 +94,19 @@ router.delete('/:id', (req, res) => {
       console.log(err);
     }else {
       res.send("Student deleted");
+    }
+  })
+})
+
+
+router.delete('/course/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+
+  pool.query("DELETE FROM students WHERE course_id =$1", [id], (err, results) => {
+    if (err) {
+      console.log(err);
+    }else {
+      res.send("Corresponding students deleted");
     }
   })
 })

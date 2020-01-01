@@ -74,7 +74,11 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  const {name, dateoffer, course_id, interviews, notes} = req.body;
+  let {name, dateoffer, course_id, interviews, notes} = req.body;
+
+  if (dateoffer==="") {
+    dateoffer = null;
+  }
 
   pool.query("UPDATE students SET name = $1, dateoffer = $2, course_id = $3, interviews = $4, notes = $5 WHERE id = $6", [name, dateoffer, course_id, interviews, notes, id], (err, results) => {
     if (err) {

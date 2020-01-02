@@ -30,18 +30,18 @@ router.get('/', (req, res) => {
   })
 })
 
-
-router.get('/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-
-  pool.query("SELECT * FROM students WHERE id = $1", [id], (err, results) => {
-    if (err) {
-      console.log(err);
-    }else {
-      res.json(results.rows);
-    }
-  })
-})
+// Get route for a specific student: not in use
+// router.get('/:id', (req, res) => {
+//   const id = parseInt(req.params.id);
+//
+//   pool.query("SELECT * FROM students WHERE id = $1", [id], (err, results) => {
+//     if (err) {
+//       console.log(err);
+//     }else {
+//       res.json(results.rows);
+//     }
+//   })
+// })
 
 
 router.post('/', (req, res) => {
@@ -51,23 +51,35 @@ router.post('/', (req, res) => {
     interviews = 0;
   }
 
+  // if (dateoffer==="") {
+  //   pool.query("INSERT INTO students (name, course_id, interviews, notes) VALUES ($1, $2, $3, $4)", [name, course_id, interviews, notes], (err, results) => {
+  //     if (err) {
+  //       console.log(err);
+  //     }else {
+  //       res.send("Student created");
+  //     }
+  //   })
+  // } else {
+  //   pool.query("INSERT INTO students (name, dateoffer, course_id, interviews, notes) VALUES ($1, $2, $3, $4, $5)", [name, dateoffer, course_id, interviews, notes], (err, results) => {
+  //     if (err) {
+  //       console.log(err);
+  //     }else {
+  //       res.send("Student created");
+  //     }
+  //   })
+  // }
+
   if (dateoffer==="") {
-    pool.query("INSERT INTO students (name, course_id, interviews, notes) VALUES ($1, $2, $3, $4)", [name, course_id, interviews, notes], (err, results) => {
-      if (err) {
-        console.log(err);
-      }else {
-        res.send("Student created");
-      }
-    })
-  } else {
-    pool.query("INSERT INTO students (name, dateoffer, course_id, interviews, notes) VALUES ($1, $2, $3, $4, $5)", [name, dateoffer, course_id, interviews, notes], (err, results) => {
-      if (err) {
-        console.log(err);
-      }else {
-        res.send("Student created");
-      }
-    })
+    dateoffer = null;
   }
+
+  pool.query("INSERT INTO students (name, dateoffer, course_id, interviews, notes) VALUES ($1, $2, $3, $4, $5)", [name, dateoffer, course_id, interviews, notes], (err, results) => {
+    if (err) {
+      console.log(err);
+    }else {
+      res.send("Student created");
+    }
+  })
 
 })
 

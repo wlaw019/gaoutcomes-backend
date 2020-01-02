@@ -18,7 +18,6 @@ const { pool } = require('../config.js');
 // ========================
 // Routes
 // ========================
-
 router.get('/', (req, res) => {
 
   pool.query("SELECT students.*, courses.course, courses.cohort, courses.dategraduated FROM students LEFT JOIN courses ON courses.id = students.course_id ORDER BY students.name", (err, results) => {
@@ -29,6 +28,7 @@ router.get('/', (req, res) => {
     }
   })
 })
+
 
 // Get route for a specific student: not in use
 // router.get('/:id', (req, res) => {

@@ -18,7 +18,6 @@ const { pool } = require('../config.js');
 // ========================
 // Routes
 // ========================
-
 router.get('/', (req, res) => {
   pool.query("SELECT * FROM courses ORDER BY course, cohort", (err, results) => {
     if (err) {

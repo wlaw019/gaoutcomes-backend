@@ -54,6 +54,7 @@ gaOutcomes tracker built for General Assembly career coaches.  App can summarize
 - PostgresSQL
 - Chart.js
 - Heroku
+- Postman
 
 ## Backend Dependencies
 
@@ -70,9 +71,20 @@ cat init.sql | heroku pg:psql postgresql-animate-01864 --app gaoutcomes-backend
 - controllers: courses.js and students.js
 - server.js
 
-### students.js (4 Routes)
+### students.js (5 Routes)
 - GET: get all students left join courses and ordered by student's username
-- POST: create a new student.  Modify interviews and dateoffer if empty string in order to satisfy data type specified in the database 
+- POST: create a new student.  Modify interviews and dateoffer if empty string in order to satisfy data type specified in the database
+- PUT: edit a student.  Modify interviews if empty string
+- DELETE: '/:id' to delete a specific student
+- DELETE: '/course/:id' to delete all the students within a course
+
+### students.js (4 Routes)
+- GET: get all courses
+- POST: create a new course
+- PUT: edit a course
+- DELETE: delete a specific student
+
+
 
 
 ### Wishlist/Purchased: Find wishlist based on username and complete.  User can enforce additional sort and filter

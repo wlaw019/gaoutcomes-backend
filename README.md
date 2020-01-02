@@ -38,10 +38,9 @@ gaOutcomes tracker built for General Assembly career coaches.  App can summarize
 - https://dev.to/paulasantamaria/change-the-timezone-on-a-heroku-app-2b4
 - https://blog.bitsrc.io/customizing-chart-js-in-react-2199fa81530a
 - https://imagecolorpicker.com/en
-- https://techcrunch.com/2016/09/21/talking-self-driving-cars-ipos-and-whats-next-with-true-ventures/
 
 ## Wire Framing
-![wire framing](public/img/wireFraming.jpg)
+![wire framing](img/wireFraming.jpg)
 
 ## Technologies Used
 
@@ -64,6 +63,7 @@ gaOutcomes tracker built for General Assembly career coaches.  App can summarize
 - pg
 
 ## gaoutcomes-backend
+![postgres tables](img/postgresTables.png)
 - table.sql: codes to initialize the database
 ```terminal
 cat init.sql | heroku pg:psql postgresql-animate-01864 --app gaoutcomes-backend
@@ -78,19 +78,76 @@ cat init.sql | heroku pg:psql postgresql-animate-01864 --app gaoutcomes-backend
 - DELETE: '/:id' to delete a specific student
 - DELETE: '/course/:id' to delete all the students within a course
 
-### students.js (4 Routes)
+### courses.js (4 Routes)
 - GET: get all courses
 - POST: create a new course
 - PUT: edit a course
 - DELETE: delete a specific student
 
+## gaoutcomes-frontend
+- 6 Components + App.js
 
-
-
-### Wishlist/Purchased: Find wishlist based on username and complete.  User can enforce additional sort and filter
-- Pulls in entire wishlist from the database and display the appropriate ones on index
+### App.js JSX structure
 ```html
-<div class="card sticky-action" ng-repeat="item in ctrl.wishlist
-| filter:{'complete':false}:true | filter:{'recipientCategory':ctrl.searchBox}:true | filter:{'username':ctrl.loggedInUser.username}:true
-| orderBy: order" ng-class="(item.priority === 'high') ? 'high' : ''">
+1  <div className = "container">
+2  
+3      <header>@gaOutcomes</header>
+4
+5      <nav>
+6         {this.state.view.page ? <h3></h3>: null}   
+7      </nav>
+8      
+9      <h3>{this.state.view.pageTitle}</h3>
+10     
+11     {this.state.view.page?
+12      <Courses />
+13      <FormCourse />
+14      <Students />
+15      <FormStudent />
+16      : null}
+17
+18  </div>
 ```
+
+### Students.js JSX structure
+```html
+1     
+2     {this.state.isShow?
+3      <Notes />
+4      <Analytics />
+5      : null}
+6
+```
+### App.js functions
+#### handleView
+- Change the state of the view so that appropriate Component shows up
+- Pre-populates form inputs for FormCourse.js and FormStudent.js
+
+#### handleCreate
+- Create a new Course or Student depending on this.state.view.page
+
+#### handleUpdate
+- Edit a Course or Student depending on this.state.view.page
+
+#### handleDelete
+- Delete a Course or Student depending on this.state.view.page
+
+#### handleDeleteStudents
+- Delete all corresponding students within a course
+
+#### handleStudents
+- Filter out the students with a specific course_id for Students.js
+
+#### handleAllStudents
+- Get all students to calculate %Success on page loads
+
+#### fetchCourses
+- Get all courses on page loads
+
+### Students.js functions
+#### isShow
+- Toggle between Notes.js and Analytics.js
+- Obtain name and notes of a particular student onClick
+
+#### getDays
+- Calculate min, max and average Search Time

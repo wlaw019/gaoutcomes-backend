@@ -5,7 +5,7 @@
 https://gaoutcomes-frontend.herokuapp.com/
 
 ## Two Separate Repo to Deploy
-https://github.com/wlaw019/gaoutcomes_frontend
+https://github.com/wlaw019/gaoutcomes_frontend  
 https://github.com/wlaw019/gaoutcomes-backend
 
 ## Original Single Repo
@@ -13,7 +13,7 @@ https://github.com/wlaw019/wlaw019.github.io
 
 ## Overview
 
-gaOutcomes tracker built for General Assembly career coaches.  App can summarize and chart quantitative data identifying students in need of attention.  Notes can be added for each student to aid follow-up.  
+gaOutcomes tracker built for General Assembly career coaches.  App can summarize and chart quantitative data identifying students in need of attentions.  Notes can be added for each student to aid follow-up.  
 
 ## Features
 
@@ -21,7 +21,7 @@ gaOutcomes tracker built for General Assembly career coaches.  App can summarize
 - User can edit and delete a specific course.  Corresponding students taking that course will also be deleted from a separate Postgres table "students"
 - User can add students to a specific course.  Data goes into the Postgres table "students" with foreign course_id key.
 - User can add and edit date of 1st offer, number of interviews and also be able to delete the student from a course.
-- Search Time = Date of 1st offer - Graduation date unless it is in pending status then the Search Time will be based on today's date.
+- Search Time = Date of 1st offer - Graduation date unless it is in pending status, then the Search Time will be based on today's date.
 - Forms can be not submitted unless all the required fields are completed
 - Highlight student with the longest Search Time within a course
 - Toggle Notes to display
@@ -72,7 +72,7 @@ cat init.sql | heroku pg:psql postgresql-animate-01864 --app gaoutcomes-backend
 - server.js
 
 ### students.js (5 Routes)
-- GET: get all students left join courses and ordered by student's username
+- GET: get all students left join courses and ordered by student's name
 - POST: create a new student.  Modify interviews and dateoffer if empty string in order to satisfy data type specified in the database
 - PUT: edit a student.  Modify interviews if empty string
 - DELETE: '/:id' to delete a specific student
@@ -150,4 +150,4 @@ cat init.sql | heroku pg:psql postgresql-animate-01864 --app gaoutcomes-backend
 - Obtain name and notes of a particular student onClick
 
 #### getDays
-- Calculate min, max and average Search Time
+- Calculates min, max and average Search Time
